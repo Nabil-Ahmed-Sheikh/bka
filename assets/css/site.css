@@ -1,0 +1,58 @@
+ @font-face {
+  	font-family: "SolaimanLipi";
+  	src: url("../fonts/SolaimanLipi.ttf");
+}
+
+* {
+	font-family: SolaimanLipi, "Times New Roman";
+	/*font-size: 1.5 em;*/
+}
+
+.header{
+	background: black;
+}
+ul.social{
+	list-style: none;
+	margin-bottom: 0px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+ul.social li{
+	display: inline;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.menu-bar .eq-padding{
+	padding: 8px 0 8px 0;
+}
+.menu-bar h5{
+	margin: 0px;
+}
+img.img-responsive{
+	width: 100%;
+	scale:auto;
+}
+.brand-color{
+	background-color: #D8CDA1;
+}
+
+.footer{
+	padding: 20px 0 20px 0;
+}
+.padding-ten{
+	padding: 10px 0 10px 0;
+}
+.footer-credit{
+	padding-top: 10px;
+	background-color: #000;
+	color: #fff;
+}
+
+.fb-page iframe{
+	border-radius: 5px;
+}
+
+.announce p, .announce h4, .announce h5{
+	font-size: 2em;
+}
