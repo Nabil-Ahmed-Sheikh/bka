@@ -3,7 +3,7 @@ require_once("initialize.php");
 require_once(LIB_PATH.DS."config.php");
 
 
-class MySQLDatabase
+class Database
 {
 	private $connection;
 	public $last_query;
@@ -19,25 +19,26 @@ class MySQLDatabase
 	public function open_connection(){
 		try {
 			$this->connection = new PDO('pgsql:host=localhost;dbname='.DB_NAME, DB_USER, DB_PASS);
-			$sql = 'select * from catagory';
-			var_dump()
 		} catch (PDOException $e) {
 			die('Error! ' . $e->message);
 		}
-
 	}
 
 	public function close_connection(){
 		if(isset($this->connection)){
-			mysqli_close($this->connection);
 			unset($this->connection);
-
 		}
 	}
 
 	public function query($sql){
 		$this->last_query = $sql;
-		$result = mysqli_query($this->connection, $sql);
+		$stmt = $this->connection->prepare($sql);
+		$stmt->execute();
+    $result = $stmt->fetchAll();
+
+		$query =$this->connection->query($sql);
+
+
 		$this->confirm_query($result);
 		return $result;
 	}
@@ -58,26 +59,12 @@ class MySQLDatabase
 		return $value;
 	}
 
-	public function fetch_array($result_set) {
-		return mysqli_fetch_array($result_set);
-	}
 
-	public function num_rows($result_set) {
-		return mysqli_num_rows($result_set);
-	}
 
-	public function insert_id() {
-		// get the last id inserted over the current db connection
-		return mysqli_insert_id($this->connection);
-	}
-
-	public function affected_rows() {
-		return mysqli_affected_rows($this->connection);
-	}
 
 	private function confirm_query($result) {
 		if(!$result){
-			$output = "Database query failed: " . mysqli_error($this->connection) . "<br /><br />";
+			$output = "Database query failed!" . "<br /><br />";
 			$output .= "Last SQL query: " . $this->last_query;
 			die($output);
 		}
@@ -85,7 +72,7 @@ class MySQLDatabase
 
 }
 
-$database = new MySQLDatabase();
+$database = new Database();
 $db =& $database;
 
 ?>

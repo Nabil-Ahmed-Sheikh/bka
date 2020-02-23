@@ -22,6 +22,8 @@
 				</div>
 				<div class="col-lg-5">
 					<ul class="social">
+
+						<li> <a href="https://www.linkedin.com/in/bangladesh-khelafat-3442a1190/" target="_blank"> <i class="bangladesh flag"></i> </a> </li>
 						<li> <a href="https://www.facebook.com/bka.org/" target="_blank"> <i class="fab fa-facebook"></i> </a> </li>
 						<li> <a href="https://twitter.com/BkaOrg"> <i class="fab fa-twitter" target="_blank"></i> </a> </li>
 						<li> <a href="https://www.linkedin.com/in/bangladesh-khelafat-3442a1190/" target="_blank"> <i class="fab fa-linkedin" target="_blank"></i> </a> </li>

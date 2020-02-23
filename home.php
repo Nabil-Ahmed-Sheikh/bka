@@ -1,3 +1,12 @@
+
+<?php require_once("includes/query_functions.php"); ?>
+<?php
+	$featuredEvents = find_featured_events();
+
+
+
+?>
+
 <?php require_once("layouts/header.php"); ?>
 
 	<div class="container">
@@ -12,15 +21,15 @@
 
 		  <div class="carousel-inner">
 		    <div class="item active">
-		      <img src="https://images.wallpaperscraft.com/image/city_buildings_street_161163_1920x1080.jpg" alt="Los Angeles">
+		      <img src="https://images.wallpaperscraft.com/image/city_buildings_street_161163_1920x1080.jpg">
 		    </div>
 
 		    <div class="item">
-		      <img src="https://images.wallpaperscraft.com/image/fish_aquarium_dark_161162_1920x1080.jpg" alt="Chicago">
+		      <img src="https://images.wallpaperscraft.com/image/fish_aquarium_dark_161162_1920x1080.jpg">
 		    </div>
 
 		    <div class="item">
-		      <img src="https://images.wallpaperscraft.com/image/waterfall_landscape_forest_161160_1920x1080.jpg" alt="New York">
+		      <img src="https://images.wallpaperscraft.com/image/waterfall_landscape_forest_161160_1920x1080.jpg">
 		    </div>
 		  </div>
 
@@ -62,11 +71,12 @@
 							</div>
 						</div>
 						<div class="col-md-3">
-							<img src="https://images.wallpaperscraft.com/image/key_daisies_inscription_dream_119219_1280x720.jpg" style="width:360px; padding-left:20px">
+							<img src="https://paloimages.prothom-alo.com/contents/cache/images/640x425x1/uploads/media/2020/02/23/8051164c815b44c64fc491c2ccf3b165-5e5212663df4e.jpg" style="width:360px; padding-left:20px">
 
 						</div>
 					</div>
 					<div class="row">
+						<div class="col-md-12">
 						<div class="card-deck" style="padding-top:20px">
 							<div class="card hidden-md hidden-lg hidden-xl">
 						    <img class="card-img-top" src="https://paloimages.prothom-alo.com/contents/cache/images/640x358x1/uploads/media/2020/02/22/5416a663c641068ff8700688ae4622c7-5e50b8a518f67.jpg" alt="Card image cap">
@@ -101,17 +111,50 @@
 						    </div>
 						  </div>
 						</div>
+						</div>
 					</div>
 				</div>
 				<div class="col-md-3">
-						<h3>সাম্প্রতিক ইভেন্ট</h3>
-						<h5> বিক্ষোভ মিছিল ও সমাবেশ </h5>
-						<img src="assets/images/kasmir.jpg" class="img-responsive"/>
-						<p> কাশ্মীরে মুসলিম গণহত্যা, নির্যাতন বন্ধ, ভারতীয় সৈন্য প্রত্যাহার ও কাশ্মীরের স্বাধীনতার দাবীতে বাংলাদেশ খোলাফত আন্দোলনের উদ্যোগে বিক্ষোভ মিছিল ও সমাবেশ</p>
-						<p>তারিখ ও সময়: ৩১ আগস্ট, শনিবার; বিকাল ৪.০০ টা </p>
-						<p>স্থান: বায়তুল মোকাররম উত্তর গেট, রাজধানী ঢাকা </p>
+					<div class="container-fluid">
+						<div id="eventCarousel" class="carousel slide" data-ride="carousel">
+
+
+
+
+						  <div class="carousel-inner">
+								<?php $countE=0; ?>
+								<?php	foreach ($featuredEvents as $featuredEvent) {?>
+										<div class="item <?php if($countE==0){echo "active";} ?>">
+											<h3>সাম্প্রতিক ইভেন্ট</h3>
+											<h5><?php echo $featuredEvent['name'] ?></h5>
+											<img src="<?php echo $featuredEvent['image_path'] ?>" class="img-responsive"/>
+											<br>
+											<p><?php echo $featuredEvent['short_description'] ?></p>
+											<p>তারিখ ও সময়: <?php echo date('d M, D, g.i A',strtotime($featuredEvent['start_time'])) ?></p>
+											<p>স্থান: <?php echo time_eng_to_arabic($featuredEvent['start_time'])  ?></p>
+								    </div>
+									<?php $countE++; } ?>
+
+
+						  </div>
+
+
+						  <a class="left carousel-control" href="#eventCarousel" data-slide="prev" style="background-image: none;">
+						    <span class="glyphicon glyphicon-chevron-left"></span>
+						    <span class="sr-only">Previous</span>
+						  </a>
+						  <a class="right carousel-control" href="#eventCarousel" data-slide="next" style="background-image: none;">
+						    <span class="glyphicon glyphicon-chevron-right"></span>
+						    <span class="sr-only">Next</span>
+						  </a>
+						</div>
+					</div>
+					<div class="container">
+						<a href="#">view all</a>
+					</div>
+
 				</div>
-			</div>
+
 
 			<div class="row">
 				<div class="col-md-9">
