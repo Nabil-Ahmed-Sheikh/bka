@@ -1,11 +1,23 @@
 
 <?php require_once("includes/query_functions.php"); ?>
+<?php
+	if(!isset($_POST['language'])){
+		$session->set_language('Bangla');
+	} else {
+		$session->set_language($_POST['language']);
+	}
+	if(!isset($session->language)){
+		$session->set_language('Bangla');
+	}
+?>
+<?php
+	$featuredEvents = find_featured_events($session->language);
 
+
+
+?>
 
 <?php require_once("layouts/header.php"); ?>
-<?php
-$featuredEvents = find_featured_events($session->language);
-?>
 
 	<div class="container">
 		<div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -124,7 +136,7 @@ $featuredEvents = find_featured_events($session->language);
 								<?php	foreach ($featuredEvents as $featuredEvent) {?>
 
 									<div class="card item <?php if($countE==0){echo "active";} ?>" style="border:none;">
-										<a href="event.php?<?php echo $featuredEvent['id']; ?>" style="text-decoration: inherit; color: inherit;">
+										<a href="event.php?id=<?php echo $featuredEvent['id']; ?>" style="text-decoration: inherit; color: inherit;">
 										<div class="">
 											<img class="card-img-top" src="<?php echo $featuredEvent['image_path'];?>" alt="Card image cap">
 									    <div class="card-body" style="background-color:#d8cda1; padding:1.25rem 0rem 1.25rem">
@@ -287,6 +299,21 @@ $featuredEvents = find_featured_events($session->language);
 		</div>
 	</footer>
 
+	<script type="text/javascript">
+			document.getElementById("chooseLanguage").onchange = function() {langChange()};
 
+			function langChange() {
+				var lang = document.getElementById("chooseLanguage").value;
+				console.log(document.getElementById("chooseLanguage").value);
+
+				var url = 'home.php';
+				var form = $('<form action="' + url + '" method="post">' +
+				  '<input type="text" name="language" value="' + lang + '" />' +
+				  '</form>');
+				$('body').append(form);
+				form.submit();
+
+			}
+	</script>
 
 	<?php require_once("layouts/footer.php"); ?>

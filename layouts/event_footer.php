@@ -13,10 +13,13 @@
 
     function langChange() {
       var lang = document.getElementById("chooseLanguage").value;
+      var parent = document.getElementById("parent_id").value;
 
-      var url = 'home.php';
+
+      var url = 'includes/event_route.php';
       var form = $('<form action="' + url + '" method="post">' +
         '<input type="text" name="language" value="' + lang + '" />' +
+        '<input type="text" name="parent_id" value="' + parent + '" />' +
         '</form>');
       $('body').append(form);
       form.submit();

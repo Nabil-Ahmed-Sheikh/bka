@@ -8,6 +8,19 @@ function find_featured_events($language=''){
   return $result;
 }
 
+function find_event($id=''){
+  global $database;
+  $sql = "select * from event where id = $id limit 1";
+  $result = $database->query($sql);
+  return $result;
+}
+
+function find_event_by_parent_id_and_language($id='',$language=''){
+  global $database;
+  $sql = "select * from event where l_parent = $id and language= '$language' limit 1";
+  $result = $database->query($sql);
+  return $result;
+}
 
 
 
