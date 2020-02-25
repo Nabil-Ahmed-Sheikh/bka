@@ -1,3 +1,19 @@
+<?php
+
+	$languages = array('Bangla','English','Arabic' );
+	if(isset($_POST['language'])){
+		$session->set_language($_POST['language']);
+	}
+	if(!isset($session->language)){
+		$session->set_language('Bangla');
+	}
+
+
+
+
+
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,8 +24,12 @@
 	<link rel="stylesheet" type="text/css" href="assets/css/site.css">
 	<link href="assets/fontawesome/css/all.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 </head>
 <body>
@@ -23,7 +43,15 @@
 				<div class="col-lg-5">
 					<ul class="social">
 
-						<li> <a href="https://www.linkedin.com/in/bangladesh-khelafat-3442a1190/" target="_blank"> <i class="bangladesh flag"></i> </a> </li>
+						<select id="chooseLanguage">
+							<option value=<?php echo $session->language;?> selected><?php if($session->language == 'Bangla') { echo "বাংলা";} elseif ($session->language == 'Arabic'){echo "عربى";} else { echo "English";}?></option>
+							<?php for($i=0; $i < count($languages); $i++) { if($languages[$i] != $session->language ){?>
+						    <option value=<?php echo $languages[$i]; ?>>
+									<?php if($languages[$i] == 'Bangla') { echo "বাংলা";} elseif ($languages[$i] == 'Arabic'){echo "عربى";} else { echo "English";} ?>
+								</option>
+							<?php }}?>
+						</select>
+
 						<li> <a href="https://www.facebook.com/bka.org/" target="_blank"> <i class="fab fa-facebook"></i> </a> </li>
 						<li> <a href="https://twitter.com/BkaOrg"> <i class="fab fa-twitter" target="_blank"></i> </a> </li>
 						<li> <a href="https://www.linkedin.com/in/bangladesh-khelafat-3442a1190/" target="_blank"> <i class="fab fa-linkedin" target="_blank"></i> </a> </li>

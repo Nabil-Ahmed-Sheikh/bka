@@ -56,9 +56,3 @@ img.img-responsive{
 .announce p, .announce h4, .announce h5{
 	font-size: 2em;
 }
-
-
-.card-horizontal {
-    display: flex;
-    flex: 1 1 auto;
-}

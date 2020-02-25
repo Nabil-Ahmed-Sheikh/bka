@@ -1,13 +1,11 @@
 
 <?php require_once("includes/query_functions.php"); ?>
-<?php
-	$featuredEvents = find_featured_events();
 
-
-
-?>
 
 <?php require_once("layouts/header.php"); ?>
+<?php
+$featuredEvents = find_featured_events($session->language);
+?>
 
 	<div class="container">
 		<div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -120,19 +118,25 @@
 
 
 
-
+							<h3>Recent Events</h3>
 						  <div class="carousel-inner">
 								<?php $countE=0; ?>
 								<?php	foreach ($featuredEvents as $featuredEvent) {?>
-										<div class="item <?php if($countE==0){echo "active";} ?>">
-											<h3>সাম্প্রতিক ইভেন্ট</h3>
-											<h5><?php echo $featuredEvent['name'] ?></h5>
-											<img src="<?php echo $featuredEvent['image_path'] ?>" class="img-responsive"/>
-											<br>
-											<p><?php echo $featuredEvent['short_description'] ?></p>
-											<p>তারিখ ও সময়: <?php echo date('d M, D, g.i A',strtotime($featuredEvent['start_time'])) ?></p>
-											<p>স্থান: <?php echo time_eng_to_arabic($featuredEvent['start_time'])  ?></p>
-								    </div>
+
+									<div class="card item <?php if($countE==0){echo "active";} ?>" style="border:none;">
+										<a href="event.php?<?php echo $featuredEvent['id']; ?>" style="text-decoration: inherit; color: inherit;">
+										<div class="">
+											<img class="card-img-top" src="<?php echo $featuredEvent['image_path'];?>" alt="Card image cap">
+									    <div class="card-body" style="background-color:#d8cda1; padding:1.25rem 0rem 1.25rem">
+									      <h4 class="card-title">Name: <?php echo $featuredEvent['name'];?></h4>
+									      <p class="card-text"><?php echo $featuredEvent['short_description'];?></p>
+									      <p class="card-text">Time and Date: <?php echo $featuredEvent['start_time'];?></p>
+												<p class="card-text">Place: <?php echo $featuredEvent['place'];?></p>
+									    </div>
+										</div>
+								    </a>
+								  </div>
+
 									<?php $countE++; } ?>
 
 
@@ -282,5 +286,7 @@
 			</div>
 		</div>
 	</footer>
+
+
 
 	<?php require_once("layouts/footer.php"); ?>
