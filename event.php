@@ -5,7 +5,7 @@ if(isset($_GET['id'])){
 } else {
   redirect_to("home.php");
 }
-var_dump($session->language);
+
 
 ?>
 
@@ -16,9 +16,10 @@ var_dump($session->language);
     <div class="card" style="border:none;">
       <img class="card-img" src="<?php echo $event['image_path']; ?>" alt="Card image cap" >
       <div class="card-body" style="background-color:#d8cda1;">
-        <h1 class="card-title"><?php echo $event['name']; ?></h1>
-        <p class="card-text"><h3><?php echo $event['content']; ?></h3></p>
+        <h1 <?php if($session->language == 'Arabic');{echo "style=\"text-align:right\"";}?> class="card-title"><?php echo $event['name']; ?></h1>
+        <p  class="card-text"><h3><?php echo $event['content']; ?></h3></p>
         <p class="card-text"><?php echo $event['start_time']; ?></p>
+        <p class="card-text"><?php echo $event['end_time']; ?></p>
         <p class="card-text"><?php echo $event['end_time']; ?></p>
         <input type="text" id="parent_id" name="" value="<?php echo $event['l_parent']; ?>" hidden>
         <input type="text" id="event_id" name="" value="<?php echo $event['id']; ?>" hidden>

@@ -130,7 +130,7 @@
 
 
 
-							<h3>Recent Events</h3>
+							<?php if($session->language == 'Arabic'){ echo "<h3 style=\"text-align:right\">"."الأحداث الأخيرة"."</h3>"; }elseif ($session->language == 'Bangla') { echo "<h3>"."সম্প্রতিক ইভেন্ট"."</h3>";} elseif($session->language == 'English') {echo "<h3>"."Recent Events"."</h3>";}?>
 						  <div class="carousel-inner">
 								<?php $countE=0; ?>
 								<?php	foreach ($featuredEvents as $featuredEvent) {?>
@@ -139,12 +139,35 @@
 										<a href="event.php?id=<?php echo $featuredEvent['id']; ?>" style="text-decoration: inherit; color: inherit;">
 										<div class="">
 											<img class="card-img-top" src="<?php echo $featuredEvent['image_path'];?>" alt="Card image cap">
-									    <div class="card-body" style="background-color:#d8cda1; padding:1.25rem 0rem 1.25rem">
-									      <h4 class="card-title">Name: <?php echo $featuredEvent['name'];?></h4>
-									      <p class="card-text"><?php echo $featuredEvent['short_description'];?></p>
-									      <p class="card-text">Time and Date: <?php echo $featuredEvent['start_time'];?></p>
-												<p class="card-text">Place: <?php echo $featuredEvent['place'];?></p>
-									    </div>
+
+											<?php if($session->language == 'Arabic'){ ?>
+
+																<div class="card-body" style="background-color:#d8cda1; padding:1.25rem 0rem 1.25rem">
+																	<h4 style="text-align:right;" class="card-title">اسم: <?php echo $featuredEvent['name'];?></h4>
+																	<p style="text-align:right;" class="card-text"><?php echo $featuredEvent['short_description'];?></p>
+																	<p style="text-align:right;" class="card-text">الوقت و التاريخ: <?php echo time_eng_to_arabic($featuredEvent['start_time']);?></p>
+																	<p style="text-align:right;" class="card-text">مكان: <?php echo $featuredEvent['place'];?></p>
+																</div>
+
+											<?php } elseif ($session->language == 'Bangla') { ?>
+																<div class="card-body" style="background-color:#d8cda1; padding:1.25rem 0rem 1.25rem">
+																	<h4 class="card-title">নাম: <?php echo $featuredEvent['name'];?></h4>
+																	<p class="card-text"><?php echo $featuredEvent['short_description'];?></p>
+																	<p class="card-text">সময় এবং তারিখ: <?php echo time_eng_to_bengali($featuredEvent['start_time']);?></p>
+																	<p class="card-text">স্থান: <?php echo $featuredEvent['place'];?></p>
+																</div>
+
+												<?php } elseif($session->language == 'English') { ?>
+																<div class="card-body" style="background-color:#d8cda1; padding:1.25rem 0rem 1.25rem">
+														      <h4 class="card-title">Name: <?php echo $featuredEvent['name'];?></h4>
+														      <p class="card-text"><?php echo $featuredEvent['short_description'];?></p>
+														      <p class="card-text">Time and Date: <?php echo date('d M, D, g:i:A', strtotime($featuredEvent['start_time']));?></p>
+																	<p class="card-text">Venue: <?php echo $featuredEvent['place'];?></p>
+														    </div>
+												<?php } ?>
+
+
+
 										</div>
 								    </a>
 								  </div>
