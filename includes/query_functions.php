@@ -22,6 +22,22 @@ function find_event_by_parent_id_and_language($id='',$language=''){
   return $result;
 }
 
+function find_featured_contents($language=''){
+  global $database;
+  $sql = "select * from content where language = '$language' and is_featured = 'true' order by post_date desc limit 4";
+  $result = $database->query($sql);
+  return $result;
+}
+
+function find_categorywise_contents($id){
+  global $database;
+  $sql = "select * from content where category_id = '$id'";
+  $result = $database->query($sql);
+  return $result;
+}
+
+
+
 
 
 

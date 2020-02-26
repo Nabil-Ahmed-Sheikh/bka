@@ -12,6 +12,8 @@
 ?>
 <?php
 	$featuredEvents = find_featured_events($session->language);
+	$featuredContents = find_featured_contents($session->language);
+	$contentURL = "content.php?id=";
 
 
 
@@ -64,62 +66,39 @@
 
 
 			<div class="row">
-				<div class="col-md-9">
-					<h3> ফিচার প্রবন্ধ </h3>
+				<div class="col-md-9 ">
+					<h3><?php if($session->language == 'Bangla'){ echo "ফিচার প্রবন্ধ";}elseif($session->language == 'English'){ echo "Featured Event";}elseif($session->language == 'Arabic'){ echo "فعاليات مميزة";} ?> </h3>
 					<div class="row visible-md visible-lg visible-xl" >
 						<div class="col-md-6">
 							<div>
-								<h3>খেলাফত পদ্ধতির সরকার দেশ ও জাতির জন্য কি করবে </h3>
+								<h3 <?php if($session->language == 'Arabic'){echo "style='text-align:right;'";}?>><?php echo $featuredContents[0]['name']; ?></h3>
 								<div>
-									<p>আল্লাহ তা‘আলার সার্বভৌমত্বের ঘোষণা দেবে এবং কুরআন ও সুন্নাহর বিধানের পরিপূর্ণ বাস্তবায়ন করবে, তথা খেলাফত পদ্ধতির শাসন ব্যবস্থা চালু করবে। </p>
-
-									<p>বিশ্ববাসীর নিকট মহান আল্লাহ তা‘আলার হুকুম-আহকাম যথাযথভাবে পৌঁছাবে। </p>
-
-									<p>রাষ্ট্রের মুসলিম-অমুসলিম সকল নাগরিকের জান-মাল, ইজ্জত, আবরু সংরক্ষণের নিশ্চয়তা বিধান করবে। সকল নাগরিকের মৌলিক চাহিদা তথা-খাদ্য, বস্ত্র, বাসস্থান, শিক্ষা, চিকিৎসা ও নিরাপত্তা নিশ্চিত করবে।</p>
-
+									<?php echo substr($featuredContents[0]['content'],0,800); ?>
 								</div>
 							</div>
 						</div>
 						<div class="col-md-3">
-							<img src="https://paloimages.prothom-alo.com/contents/cache/images/640x425x1/uploads/media/2020/02/23/8051164c815b44c64fc491c2ccf3b165-5e5212663df4e.jpg" style="width:360px; padding-left:20px">
+							<a href="<?php echo $contentURL.$featuredContents[0]['id'];?>"><img src="<?php echo $featuredContents[0]['image_path']; ?>" style="width:360px; padding-left:20px"></a>
 
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-12">
 						<div class="card-deck" style="padding-top:20px">
-							<div class="card hidden-md hidden-lg hidden-xl">
-						    <img class="card-img-top" src="https://paloimages.prothom-alo.com/contents/cache/images/640x358x1/uploads/media/2020/02/22/5416a663c641068ff8700688ae4622c7-5e50b8a518f67.jpg" alt="Card image cap">
-						    <div class="card-body">
-						      <h5 class="card-title">Card title</h5>
-						      <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-						      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-						    </div>
-						  </div>
-						  <div class="card">
-						    <img class="card-img-top" src="https://paloimages.prothom-alo.com/contents/cache/images/640x358x1/uploads/media/2020/02/22/5416a663c641068ff8700688ae4622c7-5e50b8a518f67.jpg" alt="Card image cap">
-						    <div class="card-body">
-						      <h5 class="card-title">Card title</h5>
-						      <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-						      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-						    </div>
-						  </div>
-						  <div class="card">
-						    <img class="card-img-top" src="https://paloimages.prothom-alo.com/contents/cache/images/640x607x1/uploads/media/2020/02/22/8fe9bf01be5b4bfb479a0b0bfcc8c069-5e50c2f734fab.jpg" alt="Card image cap">
-						    <div class="card-body">
-						      <h5 class="card-title">Card title</h5>
-						      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-						      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-						    </div>
-						  </div>
-						  <div class="card">
-						    <img class="card-img-top" src="https://paloimages.prothom-alo.com/contents/cache/images/640x607x1/uploads/media/2020/02/22/8fe9bf01be5b4bfb479a0b0bfcc8c069-5e50c2f734fab.jpg" alt="Card image cap">
-						    <div class="card-body">
-						      <h5 class="card-title">Card title</h5>
-						      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-						      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-						    </div>
-						  </div>
+							<?php $countF = 0; ?>
+							<?php foreach ($featuredContents as $featuredContent){ ?>
+								<a href='<?php echo $contentURL.$featuredContent['id']; ?>' style="text-decoration: inherit; color: inherit;">
+								<div class="card <?php if($countF == 0){ echo "hidden-md hidden-lg hidden-xl";}?>">
+							    <img class="card-img-top" src="<?php echo $featuredContent['image_path'];?>" alt="Card image cap">
+							    <div class="card-body">
+							      <h5 class="card-title"><?php echo $featuredContent['name'];?></h5>
+							      <p class="card-text"><?php echo substr($featuredContent['content'],0,250)." ....." ."<a href='$contentURL".$featuredContent['id']."'>read more</a>"  ;?></p>
+							      <p class="card-text"><small class="text-muted"><?php echo $featuredContent['post_date'];?></small></p>
+							    </div>
+							  </div>
+								</a>
+							<?php $countF++; } ?>
+
 						</div>
 						</div>
 					</div>

@@ -8,7 +8,12 @@ if(isset($_POST['parent_id'])){
       $session->set_language($_POST['language']);
     }
     $event = find_event_by_parent_id_and_language($_POST['parent_id'],$_POST['language'])[0];
-    redirect_to('../event.php?id='.$event['id']);
+    if($event==null){
+      redirect_to('../home.php');
+    } else {
+      redirect_to('../event.php?id='.$event['id']);
+    }
+
   } else {
     redirect_to('../home.php');
   }

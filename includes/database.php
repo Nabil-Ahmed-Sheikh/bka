@@ -36,10 +36,8 @@ class Database
 		$stmt->execute();
     $result = $stmt->fetchAll();
 
-		$query =$this->connection->query($sql);
 
-
-		$this->confirm_query($result);
+		//$this->confirm_query($result);
 		return $result;
 	}
 
