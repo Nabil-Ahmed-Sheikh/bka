@@ -51,13 +51,32 @@ function find_content_by_parent_id_and_language($id='',$language=''){
   return $result;
 }
 
+
 function find_all_menu(){
   global $database;
-  $sql = "select * from menu";
+  $sql = "select * from menu where parent_id = 0";
   $result = $database->query($sql);
   return $result;
 }
 
+function menu_has_children($id=''){
+  global $database;
+  $sql = "select * from menu where parent_id = $id";
+  $result = $database->query($sql);
+  if($result){
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function menu_dropdown_children($id=''){
+  global $database;
+  $sql = "select * from menu where parent_id = $id";
+  $result = $database->query($sql);
+  return $result;
+  
+}
 
 
 

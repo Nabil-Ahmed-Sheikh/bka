@@ -84,18 +84,18 @@ $menu_list = find_all_menu();
                   <?php if(menu_has_children($menu['id'])) {?>
                     <li class="nav-item dropdown">
     					        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    					          <?php echo $menu['name']; ?>
+    					          <?php echo $menu['arabic_name']; ?>
     					        </a>
                       <?php $dropdown_list = menu_dropdown_children($menu['id']);?>
     					        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <?php foreach ($dropdown_list as $dropdown_menu) {  ?>
-    					          <a class="dropdown-item" href="<?php echo $dropdown_menu['link']; ?>"><?php echo $dropdown_menu['name']; ?></a>
+    					          <a class="dropdown-item" href="<?php echo $dropdown_menu['link']; ?>"><?php echo $dropdown_menu['arabic_name']; ?></a>
                         <?php } ?>
     					        </div>
     					      </li>
                   <?php } else{?>
                   <li class="nav-item">
-  					        <a class="nav-link" href="/"><?php echo $menu['name'];?><span class="sr-only">(current)</span></a>
+  					        <a class="nav-link" href="/"><?php echo $menu['arabic_name'];?><span class="sr-only">(current)</span></a>
   					      </li>
                 <?php }} ?>
 
