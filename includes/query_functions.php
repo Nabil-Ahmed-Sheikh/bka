@@ -29,15 +29,34 @@ function find_featured_contents($language=''){
   return $result;
 }
 
-function find_categorywise_contents($id){
+function find_category_wise_contents($id){
   global $database;
   $sql = "select * from content where category_id = '$id'";
   $result = $database->query($sql);
   return $result;
 }
 
+function find_content($id='')
+{
+  global $database;
+  $sql = "select * from content where id = $id limit 1";
+  $result = $database->query($sql);
+  return $result;
+}
 
+function find_content_by_parent_id_and_language($id='',$language=''){
+  global $database;
+  $sql = "select * from content where l_parent = $id and language= '$language' limit 1";
+  $result = $database->query($sql);
+  return $result;
+}
 
+function find_all_menu(){
+  global $database;
+  $sql = "select * from menu";
+  $result = $database->query($sql);
+  return $result;
+}
 
 
 

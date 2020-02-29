@@ -18,8 +18,7 @@
 
 
 ?>
-
-<?php require_once("layouts/header.php"); ?>
+<?php if($session->language == 'English'){require_once("layouts/header_english.php");} else{ require_once("layouts/header.php");} ?>
 
 	<div class="container">
 		<div id="myCarousel" class="carousel slide" data-ride="carousel">

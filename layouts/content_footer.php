@@ -14,14 +14,14 @@
     function langChange() {
       var lang = document.getElementById("chooseLanguage").value;
       var parent = document.getElementById("parent_id").value;
-      var id = document.getElementById("event_id").value;
+      var content = document.getElementById("id").value;
 
 
-      var url = 'includes/event_route.php';
+      var url = 'includes/content_route.php';
       var form = $('<form action="' + url + '" method="post">' +
         '<input type="text" name="language" value="' + lang + '" />' +
         '<input type="text" name="parent_id" value="' + parent + '" />' +
-        '<input type="text" name="id" value="' + id + '" />' +
+        '<input type="text" name="id" value="' + content + '" />' +
         '</form>');
       $('body').append(form);
       form.submit();
