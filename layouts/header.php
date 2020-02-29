@@ -64,14 +64,19 @@ $menu_list = find_all_menu();
 		</div>
 	</header>
 	<section class="menu-bar">
-		<div class="container">
+		<div class="container" style="text-align:center;">
 					<nav class="navbar navbar-expand-lg navbar-light">
+						<div class="d-none d-lg-block">
+							<a class="navbar-brand" href="home.php"><img src="assets/images/logo.png" alt=""></a>
+						</div>
 
-						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+						<button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 					    <span class="navbar-toggler-icon"></span>
 					  </button>
 						<div class="collapse navbar-collapse" id="navbarNav">
-							<ul class="nav navbar-nav navbar-right">
+
+
+					    <ul class="nav navbar-nav navbar-right">
 
 
                 <?php foreach ($menu_list as $menu) {?>
@@ -96,7 +101,8 @@ $menu_list = find_all_menu();
 
 					      </li>
 					    </ul>
-						</div>
-					 </nav>
+					  </div>
+					</nav>
+
 		</div>
 	</section>

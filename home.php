@@ -211,7 +211,16 @@
 	</section>
 
 	<div class="container">
-		<h3> ফিচার প্রবন্ধ </h3>
+		<div class="row">
+			<div class="col-3">
+				<h3><?php if($session->language == 'Bangla'){ echo "ফিচার প্রবন্ধ";}elseif($session->language == 'English'){ echo "Featured Event";}elseif($session->language == 'Arabic'){ echo "فعاليات مميزة";} ?> </h3>
+			</div>
+			<div class="col-3 offset-md-3" style="text-align:right; padding-top:23px;">
+				<a href="#">All Category</a>
+			</div>
+		</div>
+
+
 		<div class="row">
 			<div class="col-md-9">
 				<div class="card-deck" style="padding-top:20px">

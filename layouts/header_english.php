@@ -63,48 +63,46 @@ $menu_list = find_all_menu();
 			</div>
 		</div>
 	</header>
-	<section class="menu-bar">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-3">
-					<h5 class="eq-padding">
-						<a href="home.php"><img src="assets/images/logo.png"/></a>
+  <section class="menu-bar">
+    <div class="container" style="text-align:center;">
+          <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="d-none d-lg-block">
+              <a class="navbar-brand" href="home.php"><img src="assets/images/logo.png" alt=""></a>
+            </div>
 
-					</h5>
-				</div>
-				<div class="col-lg-9">
-					<nav class="navbar navbar-expand-lg navbar-light">
-					  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-					    <span class="navbar-toggler-icon"></span>
-					  </button>
-					  <div class="collapse navbar-collapse align-items-center" id="navbarResponsive">
-					    <ul class="navbar-nav ml-auto align-items-center">
+            <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+
+
+              <ul class="nav navbar-nav navbar-right">
+
 
                 <?php foreach ($menu_list as $menu) {?>
                   <?php if(menu_has_children($menu['id'])) {?>
                     <li class="nav-item dropdown">
-    					        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    					          <?php echo $menu['name']; ?>
-    					        </a>
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <?php echo $menu['name']; ?>
+                      </a>
                       <?php $dropdown_list = menu_dropdown_children($menu['id']);?>
-    					        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <?php foreach ($dropdown_list as $dropdown_menu) {  ?>
-    					          <a class="dropdown-item" href="<?php echo $dropdown_menu['link']; ?>"><?php echo $dropdown_menu['name']; ?></a>
+                        <a class="dropdown-item" href="<?php echo $dropdown_menu['link']; ?>"><?php echo $dropdown_menu['name']; ?></a>
                         <?php } ?>
-    					        </div>
-    					      </li>
+                      </div>
+                    </li>
                   <?php } else{?>
                   <li class="nav-item">
-  					        <a class="nav-link" href="/"><?php echo $menu['name'];?><span class="sr-only">(current)</span></a>
-  					      </li>
+                    <a class="nav-link" href="/"><?php echo $menu['name'];?><span class="sr-only">(current)</span></a>
+                  </li>
                 <?php }} ?>
 
 
-					      </li>
-					    </ul>
-					  </div>
-					</nav>
-				</div>
-			</div>
-		</div>
-	</section>
+                </li>
+              </ul>
+            </div>
+          </nav>
+
+    </div>
+  </section>

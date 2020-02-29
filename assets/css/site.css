@@ -56,3 +56,7 @@ img.img-responsive{
 .announce p, .announce h4, .announce h5{
 	font-size: 2em;
 }
+
+.mx-auto .d-sm-flex .d-block .flex-sm-nowrap {
+    text-align: center;
+}
