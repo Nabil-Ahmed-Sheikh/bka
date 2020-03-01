@@ -24,7 +24,7 @@ function find_event_by_parent_id_and_language($id='',$language=''){
 
 function find_featured_contents($language=''){
   global $database;
-  $sql = "select * from content where language = '$language' and is_featured = 'true' order by post_date desc limit 4";
+  $sql = "select * from content where language = '$language' and is_featured = true order by post_date desc limit 4";
   $result = $database->query($sql);
   return $result;
 }
@@ -75,15 +75,40 @@ function menu_dropdown_children($id=''){
   $sql = "select * from menu where parent_id = $id";
   $result = $database->query($sql);
   return $result;
-  
+
 }
 
+function featuredCategory()
+{
+  global $database;
+  $sql = "select * from category where select_for_home = true limit 1";
+  $category = $database->query($sql);
+  return $category['0'];
+}
 
+function ContentsByCategory($id='',$language='')
+{
+  global $database;
+  $sql = "select * from content where category_id = $id and language = '$language'" ;
+  $result = $database->query($sql);
+  return $result;
+}
 
+function find_all_category()
+{
+  global $database;
+  $sql = "select * from category" ;
+  $result = $database->query($sql);
+  return $result;
+}
 
-
-
-
+function find_all_contents_of_category($id='', $language='')
+{
+  global $database;
+  $sql = "select * from content where category_id = $id and language= '$language' order by post_date desc" ;
+  $result = $database->query($sql);
+  return $result;
+}
 
 
 

@@ -1,9 +1,7 @@
 
 <?php require_once("includes/query_functions.php"); ?>
 <?php
-	if(!isset($_POST['language'])){
-		$session->set_language('Bangla');
-	} else {
+	if(isset($_POST['language'])){
 		$session->set_language($_POST['language']);
 	}
 	if(!isset($session->language)){
@@ -13,8 +11,9 @@
 <?php
 	$featuredEvents = find_featured_events($session->language);
 	$featuredContents = find_featured_contents($session->language);
+	$featuredCategory = featuredCategory();
+	$featuredCategoryContents = ContentsByCategory($featuredCategory['id'], $session->language);
 	$contentURL = "content.php?id=";
-
 
 
 ?>
@@ -73,6 +72,9 @@
 								<h3 <?php if($session->language == 'Arabic'){echo "style='text-align:right;'";}?>><?php echo $featuredContents[0]['name']; ?></h3>
 								<div>
 									<?php echo substr($featuredContents[0]['content'],0,800); ?>
+									<a href="<?php echo $contentURL.$featuredContents[0]['id']?>"><?php
+										if($session->language == 'English'){ echo "....read more";} elseif ($session->language == 'Arabic') { echo "قراءة المزيد..... ";	} elseif($session->language == 'Bangla') { echo "....আরও পড়ুন";}
+									?></a>
 								</div>
 							</div>
 						</div>
@@ -213,10 +215,11 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-3">
-				<h3><?php if($session->language == 'Bangla'){ echo "ফিচার প্রবন্ধ";}elseif($session->language == 'English'){ echo "Featured Event";}elseif($session->language == 'Arabic'){ echo "فعاليات مميزة";} ?> </h3>
+					<?php if($session->language == 'Arabic'){ echo "<h3>". $featuredCategory['arabic_name'] ."</h3>"; }elseif ($session->language == 'Bangla') { echo "<h3>".$featuredCategory['bangla_name']."</h3>";} elseif($session->language == 'English') {echo "<h3>". $featuredCategory['name'] ."</h3>";}?>
 			</div>
-			<div class="col-3 offset-md-3" style="text-align:right; padding-top:23px;">
-				<a href="#">All Category</a>
+			<div class="col-3 offset-md-3" style="text-align:right; padding-top:25px;">
+				<a href="category_list.php"><?php if($session->language == 'Arabic'){ echo "جميع الأقسام"; }elseif ($session->language == 'Bangla') { echo "সকল বিভাগ";} elseif($session->language == 'English') {echo "All Categories"; }?>
+</a>
 			</div>
 		</div>
 
@@ -224,36 +227,24 @@
 		<div class="row">
 			<div class="col-md-9">
 				<div class="card-deck" style="padding-top:20px">
+
+					<?php foreach ($featuredCategoryContents as $content){ ?>
+
 					<div class="card">
-						<img class="card-img-top" src="https://paloimages.prothom-alo.com/contents/cache/images/640x358x1/uploads/media/2020/02/22/5416a663c641068ff8700688ae4622c7-5e50b8a518f67.jpg" alt="Card image cap">
+						<img class="card-img-top" src="<?php echo $content['image_path'];?>" alt="Card image cap">
 						<div class="card-body">
-							<h5 class="card-title">Card title</h5>
-							<p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-							<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+							<h5 class="card-title"><?php echo $content['name'];?></h5>
+							<p class="card-text"><?php echo substr($content['content'],0,250)." ....." ."<a href='$contentURL".$content['id']."'>read more</a>"  ;?></p>
+							<p class="card-text"><small class="text-muted"><?php echo $content['post_date'];?></small></p>
 						</div>
 					</div>
-					<div class="card">
-						<img class="card-img-top" src="https://paloimages.prothom-alo.com/contents/cache/images/640x607x1/uploads/media/2020/02/22/8fe9bf01be5b4bfb479a0b0bfcc8c069-5e50c2f734fab.jpg" alt="Card image cap">
-						<div class="card-body">
-							<h5 class="card-title">Card title</h5>
-							<p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-							<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-						</div>
-					</div>
-					<div class="card">
-						<img class="card-img-top" src="https://paloimages.prothom-alo.com/contents/cache/images/640x607x1/uploads/media/2020/02/22/8fe9bf01be5b4bfb479a0b0bfcc8c069-5e50c2f734fab.jpg" alt="Card image cap">
-						<div class="card-body">
-							<h5 class="card-title">Card title</h5>
-							<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-							<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-						</div>
-					</div>
+				<?php } ?>
 				</div>
 			</div>
 			<div class="col-md-3">
 
 			</div>
-		</div>
+		</disv>
 	</div>
 
 	<section class="content-without-sidebar liflet padding-ten announce">
@@ -278,26 +269,39 @@
 			</div>
 		</div>
 	</section>
+</div>
 
 	<footer class="footer padding-ten brand-color">
-		<div class="container">
+		<div class="container-fluid">
 			<div class="row main-footer">
 				<div class="col-md-4">
-					<!-- <ul class="footer-links">
-						<li> <a href="#"> ইতিহাস, পরিচিতি ও আদর্শ </a> </li>
-						<li> <a href="#"> লক্ষ্য, উদ্দেশ্য ও কর্মসূচি </a> </li>
-						<li> <a href="#"> কর্মপদ্ধতি </a> </li>
-						<li> <a href="#"> নীতি নির্ধারণী ঘোষণা </a> </li>
+					<?php if($session->language == 'English'){?>
+						<h5>Bangladesh Khelafat Andolon</h5>
+						<hr/>
+						<address>
+							Central Office: Darul Khilafat, 314/2 Kellar More, Lalbagh, Dhaka-1224 Bangladesh. <br/>
+							Phone: 02-9630102, 01783339898 <br/>
+							Email: khelafatandolon01@gmail.com
+						</address>
+					<?php } elseif($session->language == 'Arabic'){?>
+						<h5 style="text-align:right;" >حركة بنغلاديش الخلافة</h5>
+						<hr/>
+						<address style="text-align:right">
+							المكتب المركزي: دار الخلافة ، 314/2 كيلار مور ، لالباغ ، دكا 1224 بنغلاديش. <br/>
+							02-9630102, 01783339898 :هاتف <br/>
+							khelafatandolon01@gmail.com :البريد الإلكتروني
+						</address>
+					<?php } else{?>
+						<h5>বাংলাদেশ খেলাফত আন্দোলন</h5>
+						<hr/>
+						<address>
+							কেন্দ্রীয় কার্যালয়: দারুল খেলাফত, ৩১৪/২ কেল্লার মোড়, লালবাগ, ঢাকা-১২১১ বাংলাদেশ। <br/>
+							ফোন: ০২-৯৬৩০১০২, ০১৭৮৩৩৩৯৪৭৪ <br/>
+							ইমেইল: khelafatandolon01@gmail.com
+						</address>
+					<?php }?>
 
-					</ul>
-					<hr/> -->
-					<h5>বাংলাদেশ খেলাফত আন্দোলন</h5>
-					<hr/>
-					<address>
-						কেন্দ্রীয় কার্যালয়: দারুল খেলাফত, ৩১৪/২ কেল্লার মোড়, লালবাগ, ঢাকা-১২১১ বাংলাদেশ। <br/>
-						ফোন: ০২-৯৬৩০১০২, ০১৭৮৩৩৩৯৪৭৪ <br/>
-						ইমেইল: khelafatandolon01@gmail.com
-					</address>
+
 				</div>
 				<div class="col-md-4">
 					<div class="fb-page" data-href="https://www.facebook.com/bka.org/"  data-width="" data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/bka.org/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/bka.org/">Bangladesh Khelafat Andolon</a></blockquote></div>
@@ -309,21 +313,22 @@
 		</div>
 	</footer>
 
-	<script type="text/javascript">
-			document.getElementById("chooseLanguage").onchange = function() {langChange()};
 
-			function langChange() {
-				var lang = document.getElementById("chooseLanguage").value;
-				console.log(document.getElementById("chooseLanguage").value);
-
-				var url = 'home.php';
-				var form = $('<form action="' + url + '" method="post">' +
-				  '<input type="text" name="language" value="' + lang + '" />' +
-				  '</form>');
-				$('body').append(form);
-				form.submit();
-
-			}
-	</script>
 
 	<?php require_once("layouts/footer.php"); ?>
+
+	<script type="text/javascript">
+	    document.getElementById("chooseLanguage").onchange = function() {langChange()};
+
+	    function langChange() {
+	      var lang = document.getElementById("chooseLanguage").value;
+
+	      var url = 'home.php';
+	      var form = $('<form action="' + url + '" method="post">' +
+	        '<input type="text" name="language" value="' + lang + '" />' +
+	        '</form>');
+	      $('body').append(form);
+	      form.submit();
+
+	    }
+	</script>

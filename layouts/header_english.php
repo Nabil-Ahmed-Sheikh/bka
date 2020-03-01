@@ -57,7 +57,6 @@ $menu_list = find_all_menu();
 						<li> <a href="https://twitter.com/BkaOrg"> <i class="fab fa-twitter" target="_blank"></i> </a> </li>
 						<li> <a href="https://www.linkedin.com/in/bangladesh-khelafat-3442a1190/" target="_blank"> <i class="fab fa-linkedin" target="_blank"></i> </a> </li>
 						<li> <a href="tel:+88 017 112 63452">Cell.: +88 017 112 63452</a> </li>
-						<li> <a href="join.php">সদস্য হোন</a> </li>
 					</ul>
 				</div>
 			</div>

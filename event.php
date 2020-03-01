@@ -10,7 +10,7 @@ if(isset($_GET['id'])){
 ?>
 
 
-<?php require_once("layouts/header.php"); ?>
+<?php if($session->language == 'English'){require_once("layouts/header_english.php");} elseif($session->language == 'Arabic'){ require_once("layouts/header_arabic.php");} else{require_once("layouts/header.php");} ?>
 
 
 <?php if($session->language == 'English'){ ?>
@@ -75,4 +75,25 @@ if(isset($_GET['id'])){
 <?php } ?>
 
 
-	<?php require_once("layouts/event_footer.php"); ?>
+	<?php require_once("layouts/footer.php"); ?>
+
+  <script type="text/javascript">
+      document.getElementById("chooseLanguage").onchange = function() {langChange()};
+
+      function langChange() {
+        var lang = document.getElementById("chooseLanguage").value;
+        var parent = document.getElementById("parent_id").value;
+        var id = document.getElementById("event_id").value;
+
+
+        var url = 'includes/event_route.php';
+        var form = $('<form action="' + url + '" method="post">' +
+          '<input type="text" name="language" value="' + lang + '" />' +
+          '<input type="text" name="parent_id" value="' + parent + '" />' +
+          '<input type="text" name="id" value="' + id + '" />' +
+          '</form>');
+        $('body').append(form);
+        form.submit();
+
+      }
+  </script>

@@ -8,21 +8,7 @@
   </div>
 </div>
 
-<script type="text/javascript">
-    document.getElementById("chooseLanguage").onchange = function() {langChange()};
 
-    function langChange() {
-      var lang = document.getElementById("chooseLanguage").value;
-
-      var url = 'home.php';
-      var form = $('<form action="' + url + '" method="post">' +
-        '<input type="text" name="language" value="' + lang + '" />' +
-        '</form>');
-      $('body').append(form);
-      form.submit();
-
-    }
-</script>
 
 </body>
 </html>
