@@ -80,7 +80,7 @@
 							</div>
 						</div>
 						<div class="col-md-3">
-							<a href="<?php echo $contentURL.$featuredContents[0]['id'];?>"><img class="rounded" src="<?php echo $featuredContents[0]['image_path']; ?>" onerror="this.onerror=null; this.src='assets/images/default.jpg'" style="width:360px; padding-left:20px"></a>
+							<a href="<?php echo $contentURL.$featuredContents[0]['id'];?>"><img src="<?php echo $featuredContents[0]['image_path']; ?>" onerror="this.onerror=null; this.src='assets/images/default.jpg'" style="width:360px; margin-left:20px; border-radius: 3%"></a>
 
 						</div>
 					</div>
@@ -119,7 +119,7 @@
 									<div class="card item <?php if($countE==0){echo "active";} ?>" style="border:none;">
 										<a href="event.php?id=<?php echo $featuredEvent['id']; ?>" style="text-decoration: inherit; color: inherit;">
 										<div class="">
-											<img class="card-img-top" src="<?php echo $featuredEvent['image_path'];?>" onerror="this.onerror=null; this.src='assets/images/default.jpg'" alt="Card image cap">
+											<img class="card-img-top" src="<?php echo $featuredEvent['image_path'];?>" onerror="this.onerror=null; this.src='assets/images/default.jpg'" alt="Card image cap" >
 
 											<?php if($session->language == 'Arabic'){ ?>
 

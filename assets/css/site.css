@@ -33,6 +33,10 @@ img.img-responsive{
 	width: 100%;
 	scale:auto;
 }
+
+img {
+  border-radius: 3%;
+}
 .brand-color{
 	background-color: #D8CDA1;
 }

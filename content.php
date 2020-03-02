@@ -22,7 +22,7 @@ $categories = find_all_category();
     <div class="row">
       <div class="col-md-9">
         <div class="card" style="border:none;">
-          <img class="card-img rounded" src="<?php echo $content['image_path']; ?>" onerror="this.onerror=null; this.src='assets/images/default.jpg'" alt="Card image cap" >
+          <img class="card-img " src="<?php echo $content['image_path']; ?>" onerror="this.onerror=null; this.src='assets/images/default.jpg'" alt="Card image cap" >
           <div class="card-body" style="background-color:#d8cda1;">
             <h1 class="card-title"><?php echo $content['name']; ?></h1>
             <p class="card-text"><h3><?php echo $content['content']; ?></h3></p>
@@ -55,7 +55,7 @@ $categories = find_all_category();
     <div class="row">
       <div class="col-md-9">
         <div class="card" style="border:none;">
-          <img class="card-img rounded" src="<?php echo $content['image_path']; ?>" onerror="this.onerror=null; this.src='assets/images/default.jpg'" alt="Card image cap" >
+          <img class="card-img " src="<?php echo $content['image_path']; ?>" onerror="this.onerror=null; this.src='assets/images/default.jpg'" alt="Card image cap" >
           <div class="card-body" style="background-color:#d8cda1;">
             <h1 class="card-title"><?php echo $content['name']; ?></h1>
             <p class="card-text"><h3><?php echo $content['content']; ?></h3></p>
@@ -90,7 +90,7 @@ $categories = find_all_category();
     <div class="row">
       <div class="col-md-9">
         <div class="card" style="border:none;">
-          <img class="card-img rounded" src="<?php echo $content['image_path']; ?>" onerror="this.onerror=null; this.src='assets/images/default.jpg'" alt="Card image cap" >
+          <img class="card-img " src="<?php echo $content['image_path']; ?>" onerror="this.onerror=null; this.src='assets/images/default.jpg'" alt="Card image cap" >
           <div class="card-body" style="background-color:#d8cda1;text-align:right;">
             <h1 class="card-title"><?php echo $content['name']; ?></h1>
             <p class="card-text"><h3><?php echo $content['content']; ?></h3></p>
