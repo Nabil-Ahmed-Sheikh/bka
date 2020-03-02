@@ -12,17 +12,17 @@ $categories = find_all_category();
 ?>
 
 
-<?php if($session->language == 'English'){require_once("layouts/header_english.php");} elseif($session->language == 'Arabic'){ require_once("layouts/header_arabic.php");} else{require_once("layouts/header.php");} ?>
+<?php if($session->language == 'English'){require_once("layouts/header_content_english.php");} elseif($session->language == 'Arabic'){ require_once("layouts/header_content_arabic.php");} else{require_once("layouts/header_content_bangla.php");} ?>
 
 
 <?php if($session->language == 'English'){ ?>
 
-<section class="content-with-sidebar padding-ten brand-color" >
+<section class="content-with-sidebar padding-ten brand-color" style="min-height:calc(100vh - 146px);" >
   <div class="container" style="padding: 20px 20px;">
     <div class="row">
       <div class="col-md-9">
         <div class="card" style="border:none;">
-          <img class="card-img" src="<?php echo $content['image_path']; ?>" alt="Card image cap" >
+          <img class="card-img rounded" src="<?php echo $content['image_path']; ?>" onerror="this.onerror=null; this.src='assets/images/default.jpg'" alt="Card image cap" >
           <div class="card-body" style="background-color:#d8cda1;">
             <h1 class="card-title"><?php echo $content['name']; ?></h1>
             <p class="card-text"><h3><?php echo $content['content']; ?></h3></p>
@@ -50,12 +50,12 @@ $categories = find_all_category();
 
 <?php } elseif($session->language == 'Bangla'){ ?>
 
-<section class="content-with-sidebar padding-ten brand-color" >
+<section class="content-with-sidebar padding-ten brand-color" style="min-height:calc(100vh - 146px);">
   <div class="container" style="padding: 20px 20px;">
     <div class="row">
       <div class="col-md-9">
         <div class="card" style="border:none;">
-          <img class="card-img" src="<?php echo $content['image_path']; ?>" alt="Card image cap" >
+          <img class="card-img rounded" src="<?php echo $content['image_path']; ?>" onerror="this.onerror=null; this.src='assets/images/default.jpg'" alt="Card image cap" >
           <div class="card-body" style="background-color:#d8cda1;">
             <h1 class="card-title"><?php echo $content['name']; ?></h1>
             <p class="card-text"><h3><?php echo $content['content']; ?></h3></p>
@@ -85,12 +85,12 @@ $categories = find_all_category();
 
 <?php } elseif($session->language == 'Arabic'){ ?>
 
-<section class="content-with-sidebar padding-ten brand-color" >
+<section class="content-with-sidebar padding-ten brand-color" style="min-height:calc(100vh - 146px);">
   <div class="container" style="padding: 20px 20px;">
     <div class="row">
       <div class="col-md-9">
         <div class="card" style="border:none;">
-          <img class="card-img" src="<?php echo $content['image_path']; ?>" alt="Card image cap" >
+          <img class="card-img rounded" src="<?php echo $content['image_path']; ?>" onerror="this.onerror=null; this.src='assets/images/default.jpg'" alt="Card image cap" >
           <div class="card-body" style="background-color:#d8cda1;text-align:right;">
             <h1 class="card-title"><?php echo $content['name']; ?></h1>
             <p class="card-text"><h3><?php echo $content['content']; ?></h3></p>

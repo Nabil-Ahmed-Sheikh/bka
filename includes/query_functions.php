@@ -8,19 +8,8 @@ function find_featured_events($language=''){
   return $result;
 }
 
-function find_event($id=''){
-  global $database;
-  $sql = "select * from event where id = $id limit 1";
-  $result = $database->query($sql);
-  return $result;
-}
 
-function find_event_by_parent_id_and_language($id='',$language=''){
-  global $database;
-  $sql = "select * from event where l_parent = $id and language= '$language' limit 1";
-  $result = $database->query($sql);
-  return $result;
-}
+
 
 function find_featured_contents($language=''){
   global $database;
@@ -44,9 +33,24 @@ function find_content($id='')
   return $result;
 }
 
+function find_event($id='')
+{
+  global $database;
+  $sql = "select * from event where id = $id limit 1";
+  $result = $database->query($sql);
+  return $result;
+}
+
 function find_content_by_parent_id_and_language($id='',$language=''){
   global $database;
   $sql = "select * from content where l_parent = $id and language= '$language' limit 1";
+  $result = $database->query($sql);
+  return $result;
+}
+
+function find_event_by_parent_id_and_language($id='',$language=''){
+  global $database;
+  $sql = "select * from event where l_parent = $id and language= '$language' limit 1";
   $result = $database->query($sql);
   return $result;
 }
@@ -81,15 +85,23 @@ function menu_dropdown_children($id=''){
 function featuredCategory()
 {
   global $database;
-  $sql = "select * from category where select_for_home = true limit 1";
+  $sql = "select * from category where select_for_home = true";
   $category = $database->query($sql);
-  return $category['0'];
+  return $category;
 }
 
 function ContentsByCategory($id='',$language='')
 {
   global $database;
   $sql = "select * from content where category_id = $id and language = '$language'" ;
+  $result = $database->query($sql);
+  return $result;
+}
+
+function ContentsByCategoryHome($id='',$language='')
+{
+  global $database;
+  $sql = "select * from content where category_id = $id and language = '$language' limit 4" ;
   $result = $database->query($sql);
   return $result;
 }
@@ -111,10 +123,26 @@ function find_all_contents_of_category($id='', $language='')
 }
 
 
+function category_has_content($id='', $language='')
+{
+  global $database;
+  $sql = "select * from content where category_id = $id and language= '$language'" ;
+  $result = $database->query($sql);
+  if($result) {
+    return true;
+  } else {
+    return false;
+  }
+}
 
 
-
-
+function find_category_by_id($id='')
+{
+  global $database;
+  $sql = "select * from category where id = $id limit 1" ;
+  $result = $database->query($sql);
+  return $result;
+}
 
 
 

@@ -33,7 +33,7 @@
 
 <?php } elseif($session->language == 'Bangla'){ ?>
   <section class="content-with-sidebar padding-ten brand-color" style="overflow:auto;">
-  <div class="container" style="min-height:calc(100vh - 166px);text-align:center">
+  <div class="container" style="min-height:calc(100vh - 166px);text-align:center;">
     <h1>সকল বিভাগ</h1>
     <div class="list-group" style="padding-top:10%;">
       <?php foreach ($categories as $category) { ?>
